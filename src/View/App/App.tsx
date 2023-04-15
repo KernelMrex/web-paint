@@ -13,7 +13,8 @@ type AppProps = {
 };
 
 function App({ shapes, controller }: AppProps) {
-    const moveShape = (id: string, deltaX: number, deltaY: number) => controller.MoveShape(id, deltaX, deltaY)
+    const moveShape = (id: string, deltaX: number, deltaY: number) => controller.MoveShape(id, deltaX, deltaY);
+    const removeShape = (id: string) => controller.RemoveShape(id)
 
     const addRectangle = () => {
         const rect = new CRectangle(uuid(), {
@@ -28,7 +29,11 @@ function App({ shapes, controller }: AppProps) {
     return (
         <div className="app">
             <Menu addRectangle={ addRectangle } />
-            <Editor shapes={shapes} moveShape={moveShape}/>
+            <Editor
+                shapes={shapes}
+                moveShape={moveShape}
+                removeShape={removeShape}
+            />
         </div>
     );
 }

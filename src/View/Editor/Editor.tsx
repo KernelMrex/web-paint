@@ -4,16 +4,23 @@ import Rectangle from './Shape/Rectangle';
 import CRectangle from '../../Model/Shape/CRectangle';
 import { useRef } from 'react';
 import useSelect from '../../Hook/useSelect';
+import useHotkey from '../../Hook/useHotkey';
 
 type EditorProps = {
     shapes: Array<IShape>;
-    moveShape: (id: string, deltaX: number, deltaY: number) => void
+    moveShape: (id: string, deltaX: number, deltaY: number) => void;
+    removeShape: (id: string) => void;
 }
 
-function Editor({ shapes, moveShape }: EditorProps) {
+function Editor({ shapes, moveShape, removeShape }: EditorProps) {
     const ref = useRef(null);
 
     const { selectedId, setSelectedId } = useSelect(ref);
+    useHotkey('Delete', () => {
+        if (selectedId !== '') {
+            removeShape(selectedId);
+        }
+    });
 
     return (
         <svg
