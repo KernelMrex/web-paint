@@ -4,10 +4,12 @@ import useDragAndDrop from './useDragAndDrop';
 function useShapeDragAndDrop<T extends SVGElement>(
     ref: React.RefObject<T>,
     onShapeMove: (deltaX: number, deltaY: number) => void,
+    setSelected: () => void,
 ) {
     let prevPos = { x: 0, y: 0 };
 
     const onMoveStart = (e: MouseEvent) => {
+        setSelected();
         prevPos = { x: e.pageX, y: e.pageY };
     }
 
