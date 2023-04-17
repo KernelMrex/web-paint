@@ -6,6 +6,8 @@ import CEditorController from '../../Controller/CEditorController';
 import IShape from '../../Model/Shape/IShape';
 import Menu from '../Menu/Menu';
 import CRectangle from '../../Model/Shape/CRectangle';
+import CCircle from '../../Model/Shape/CCircle';
+import CTriangle from '../../Model/Shape/CTriangle';
 
 type AppProps = {
     shapes: Array<IShape>;
@@ -19,23 +21,40 @@ function App({ shapes, controller }: AppProps) {
 
     const addRectangle = () => {
         const rect = new CRectangle(uuid(), {
-            leftTop: {x: 50, y: 70},
-            height: 20,
-            width: 40,
+            leftTop: {x: 50, y: 50},
+            height: 80,
+            width: 80,
         });
-
         controller.AddShape(rect);
+    }
+
+    const addEllipse = () => {
+        const circle = new CCircle(uuid(), {
+            leftTop: {x: 50, y: 50},
+            height: 80,
+            width: 80,
+        });
+        controller.AddShape(circle);
+    }
+
+    const addTriangle = () => {
+        const triangle = new CTriangle(uuid(), {
+            leftTop: {x: 50, y: 50},
+            height: 80,
+            width: 80,
+        });
+        controller.AddShape(triangle);
     }
 
     return (
         <div className="app">
-            <Menu addRectangle={ addRectangle } />
-            <Editor
-                shapes={shapes}
-                moveShape={moveShape}
-                removeShape={removeShape}
-                resizeShape={resizeShape}
-            />
+            <Menu addRectangle={ addRectangle }
+                  addEllipse={ addEllipse }
+                  addTriangle={ addTriangle } />
+            <Editor shapes={shapes}
+                    moveShape={moveShape}
+                    removeShape={removeShape}
+                    resizeShape={resizeShape} />
         </div>
     );
 }

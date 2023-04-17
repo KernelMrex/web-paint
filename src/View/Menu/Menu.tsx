@@ -1,13 +1,15 @@
 type MenuProps = {
-    addRectangle: () => void
+    addRectangle: () => void;
+    addEllipse: () => void,
+    addTriangle: () => void,
 }
 
-function Menu({ addRectangle }: MenuProps) {
+function Menu({ addRectangle, addEllipse, addTriangle }: MenuProps) {
     return (
         <div>
-            <button onClick={ () => {
-                addRectangle();
-            } }>Rectangle</button>
+            <button onClick={ addRectangle }>Rectangle</button>
+            <button onClick={ addEllipse }>Circle</button>
+            <button onClick={ addTriangle }>Triangle</button>
         </div>
     );
 }

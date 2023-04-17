@@ -5,7 +5,6 @@ import App from './View/App/App';
 import reportWebVitals from './reportWebVitals';
 import CEditor from './Model/Editor/CEditor';
 import CEditorController from './Controller/CEditorController';
-import CRectangle from './Model/Shape/CRectangle';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,18 +12,6 @@ const root = ReactDOM.createRoot(
 
 const editor = new CEditor();
 const controller = new CEditorController(editor);
-
-controller.AddShape(new CRectangle('a', {
-    leftTop: {x: 50, y: 70},
-    height: 20,
-    width: 40,
-}));
-
-controller.AddShape(new CRectangle('b', {
-    leftTop: {x: 400, y: 600},
-    height: 50,
-    width: 50,
-}));
 
 function render() {
     root.render(

@@ -1,10 +1,8 @@
 import IShape from '../../Model/Shape/IShape';
-import ShapeType from '../../Model/Shape/ShapeType';
-import Rectangle from './Shape/Rectangle';
-import CRectangle from '../../Model/Shape/CRectangle';
 import { useRef } from 'react';
 import useSelect from '../../Hook/useSelect';
 import useHotkey from '../../Hook/useHotkey';
+import Shape from './Shape/Shape';
 
 type EditorProps = {
     shapes: Array<IShape>;
@@ -30,20 +28,14 @@ function Editor({ shapes, moveShape, removeShape, resizeShape }: EditorProps) {
             width={'1024'}
             height={'1024'}
         >
-            {shapes.map(shape => {
-                switch (shape.Type()) {
-                    case ShapeType.RECTANGLE:
-                        return <Rectangle
-                            key={shape.ID()}
-                            shape={shape as CRectangle}
-                            moveShape={moveShape}
-                            resizeShape={resizeShape}
-                            isSelected={shape.ID() === selectedId}
-                            setSelected={() => { setSelectedId(shape.ID()); } }
-                        />
-                }
-                return <></>
-            })}
+            {shapes.map(shape => <Shape
+                key={ shape.ID() }
+                shape={ shape }
+                moveShape={ moveShape }
+                resizeShape={ resizeShape }
+                isSelected={ shape.ID() === selectedId }
+                setSelected={ () => { setSelectedId(shape.ID()); } }/>
+            )}
         </svg>
     )
 }
