@@ -37,8 +37,6 @@ class CEditor implements IEditor {
             throw new Error(`Shape with ID ${id} not found`);
         }
 
-        console.log('Drag and drop update called')
-
         shape.SetFrame(updateCb(shape.Frame()));
         this.Notify();
     }
