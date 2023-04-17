@@ -25,6 +25,14 @@ class CEditorController {
             }
         }))
     }
+
+    public ResizeShape(id: string, newWidth: number, newHeight: number): void {
+        this.editor.UpdateShapeFrame(id, frame => ({
+            ...frame,
+            width: newWidth,
+            height: newHeight,
+        }));
+    }
 }
 
 export default CEditorController;

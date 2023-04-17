@@ -15,6 +15,7 @@ type AppProps = {
 function App({ shapes, controller }: AppProps) {
     const moveShape = (id: string, deltaX: number, deltaY: number) => controller.MoveShape(id, deltaX, deltaY);
     const removeShape = (id: string) => controller.RemoveShape(id)
+    const resizeShape = (id: string, width: number, height: number) => controller.ResizeShape(id, width, height)
 
     const addRectangle = () => {
         const rect = new CRectangle(uuid(), {
@@ -33,6 +34,7 @@ function App({ shapes, controller }: AppProps) {
                 shapes={shapes}
                 moveShape={moveShape}
                 removeShape={removeShape}
+                resizeShape={resizeShape}
             />
         </div>
     );

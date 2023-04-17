@@ -10,9 +10,10 @@ type EditorProps = {
     shapes: Array<IShape>;
     moveShape: (id: string, deltaX: number, deltaY: number) => void;
     removeShape: (id: string) => void;
+    resizeShape: (id: string, width: number, height: number) => void;
 }
 
-function Editor({ shapes, moveShape, removeShape }: EditorProps) {
+function Editor({ shapes, moveShape, removeShape, resizeShape }: EditorProps) {
     const ref = useRef(null);
 
     const { selectedId, setSelectedId } = useSelect(ref);
@@ -36,6 +37,7 @@ function Editor({ shapes, moveShape, removeShape }: EditorProps) {
                             key={shape.ID()}
                             shape={shape as CRectangle}
                             moveShape={moveShape}
+                            resizeShape={resizeShape}
                             isSelected={shape.ID() === selectedId}
                             setSelected={() => { setSelectedId(shape.ID()); } }
                         />
