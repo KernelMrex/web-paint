@@ -1,0 +1,16 @@
+.app
+{
+    background: #aaf7ff;
+    margin: auto;
+    height: 100vh;
+}
+
+.app__menu
+{
+}
+
+.app__editor
+{
+    display: flex;
+    justify-content: center;
+}

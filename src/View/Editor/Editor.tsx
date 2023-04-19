@@ -1,5 +1,6 @@
+import './Editor.css';
 import IShape from '../../Model/Shape/IShape';
-import { useRef } from 'react';
+import {useRef} from 'react';
 import useSelect from '../../Hook/useSelect';
 import useHotkey from '../../Hook/useHotkey';
 import Shape from './Shape/Shape';
@@ -23,6 +24,7 @@ function Editor({ shapes, moveShape, removeShape, resizeShape }: EditorProps) {
 
     return (
         <svg
+            className={"editor"}
             ref={ ref }
             viewBox={'0 0 1024 1024'}
             width={'1024'}

@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { v4 as uuid } from 'uuid';
+import {v4 as uuid} from 'uuid';
 import Editor from '../Editor/Editor';
 import CEditorController from '../../Controller/CEditorController';
 import IShape from '../../Model/Shape/IShape';
@@ -48,13 +48,17 @@ function App({ shapes, controller }: AppProps) {
 
     return (
         <div className="app">
-            <Menu addRectangle={ addRectangle }
-                  addEllipse={ addEllipse }
-                  addTriangle={ addTriangle } />
-            <Editor shapes={shapes}
-                    moveShape={moveShape}
-                    removeShape={removeShape}
-                    resizeShape={resizeShape} />
+            <div className="app__menu">
+                <Menu addRectangle={ addRectangle }
+                      addEllipse={ addEllipse }
+                      addTriangle={ addTriangle } />
+            </div>
+            <div className="app__editor">
+                <Editor shapes={shapes}
+                        moveShape={moveShape}
+                        removeShape={removeShape}
+                        resizeShape={resizeShape} />
+            </div>
         </div>
     );
 }
