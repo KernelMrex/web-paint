@@ -1,13 +1,10 @@
 import './App.css';
 import React from 'react';
-import {v4 as uuid} from 'uuid';
 import Editor from '../Editor/Editor';
 import CEditorController from '../../Controller/CEditorController';
 import IShape from '../../Model/Shape/IShape';
 import Menu from '../Menu/Menu';
-import CRectangle from '../../Model/Shape/CRectangle';
-import CCircle from '../../Model/Shape/CCircle';
-import CTriangle from '../../Model/Shape/CTriangle';
+import ShapeType from "../../Model/Shape/ShapeType";
 
 type AppProps = {
     shapes: Array<IShape>;
@@ -19,32 +16,9 @@ function App({ shapes, controller }: AppProps) {
     const removeShape = (id: string) => controller.RemoveShape(id)
     const resizeShape = (id: string, width: number, height: number) => controller.ResizeShape(id, width, height)
 
-    const addRectangle = () => {
-        const rect = new CRectangle(uuid(), {
-            leftTop: {x: 50, y: 50},
-            height: 80,
-            width: 80,
-        });
-        controller.AddShape(rect);
-    }
-
-    const addEllipse = () => {
-        const circle = new CCircle(uuid(), {
-            leftTop: {x: 50, y: 50},
-            height: 80,
-            width: 80,
-        });
-        controller.AddShape(circle);
-    }
-
-    const addTriangle = () => {
-        const triangle = new CTriangle(uuid(), {
-            leftTop: {x: 50, y: 50},
-            height: 80,
-            width: 80,
-        });
-        controller.AddShape(triangle);
-    }
+    const addRectangle = () => controller.CreateShape(ShapeType.RECTANGLE);
+    const addEllipse = () => controller.CreateShape(ShapeType.CIRCLE);
+    const addTriangle = () => controller.CreateShape(ShapeType.TRIANGLE);
 
     return (
         <div className="app">
