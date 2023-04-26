@@ -1,18 +1,17 @@
-import IShape from '../../../Model/Shape/IShape';
-import { ForwardedRef, forwardRef } from 'react';
+import {ForwardedRef, forwardRef} from 'react';
 
 type ResizeAnchorOverlayProps = {
-    shape: IShape
+    x: number,
+    y: number,
+    anchorSize: number,
 }
 
-const ResizeAnchorOverlay = forwardRef(({ shape }: ResizeAnchorOverlayProps, ref: ForwardedRef<SVGRectElement>) => {
-    const anchorSize = 8;
-
+const ResizeAnchorOverlay = forwardRef(({ x, y, anchorSize }: ResizeAnchorOverlayProps, ref: ForwardedRef<SVGRectElement>) => {
     return (
         <rect
             ref={ ref }
-            x={ shape.Frame().leftTop.x + shape.Frame().width - (anchorSize / 2) }
-            y={ shape.Frame().leftTop.y + shape.Frame().height - (anchorSize / 2) }
+            x={ x }
+            y={ y }
             width={ anchorSize }
             height={ anchorSize }
             fill={ "#9e6eff" }

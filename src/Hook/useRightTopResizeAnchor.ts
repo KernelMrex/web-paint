@@ -1,14 +1,18 @@
-import IShape from '../Model/Shape/IShape';
-import { RefObject } from 'react';
-import useDragAndDrop from './useDragAndDrop';
+import {RefObject} from "react";
+import IShape from "../Model/Shape/IShape";
+import useDragAndDrop from "./useDragAndDrop";
 
-function useShapeResize<T extends SVGElement>(
+function useRightTopResizeAnchor<T extends SVGElement>(
     ref: RefObject<T>,
     shape: IShape,
     setShapeFrame: (width: number, height: number) => void,
+    moveShape: (deltaX: number, deltaY: number) => void,
 ) {
     let prevPos = { x: 0, y: 0 };
-    let shapeDelta = { width: shape.Frame().width, height: shape.Frame().height };
+    let shapeDelta = {
+        width: shape.Frame().width,
+        height: shape.Frame().height,
+    };
 
     const onMoveStart = (e: MouseEvent) => {
         prevPos = { x: e.pageX, y: e.pageY };
@@ -23,12 +27,17 @@ function useShapeResize<T extends SVGElement>(
 
         shapeDelta = {
             width: shapeDelta.width + delta.width,
-            height: shapeDelta.height + delta.height,
+            height: shapeDelta.height - delta.height,
         }
 
         setShapeFrame(
             (shapeDelta.width > 1) ? (shape.Frame().width + delta.width) : 1,
-            (shapeDelta.height > 1) ? (shape.Frame().height + delta.height) : 1,
+            (shapeDelta.height > 1) ? (shape.Frame().height - delta.height) : 1,
+        );
+
+        moveShape(
+            0,
+            (shapeDelta.height > 0) ? delta.height : 0,
         );
 
         prevPos = {
@@ -38,7 +47,6 @@ function useShapeResize<T extends SVGElement>(
     }
 
     useDragAndDrop(ref, onMoveStart, onMove, null);
-
 }
 
-export default useShapeResize;
+export default useRightTopResizeAnchor;
